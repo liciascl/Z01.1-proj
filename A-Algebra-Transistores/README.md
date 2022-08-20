@@ -10,7 +10,7 @@ Esse projeto deverá ser realizado em duplas ou trios e os arquivos devem ser en
 
 Queremos controlar o robô asprirador de pó da figura a seguir:
 
-![](figs/A-Transistores/robo.png){width=400}
+![](robo.png)
 
 onde y1 e y2 são sinais de saída de 2 bits cada para os motores da esquerda e direita e x1, x2 e x3 são sensores para detectar a colisão do robô.
 
