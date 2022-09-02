@@ -205,11 +205,10 @@ Para atingir os objetivos A e B, deve-se antes atingir o C.
 
 !!! tip "Conceito A"
     
-    Vocês devem implementar o "exibe hexadecimal" n0
-    arquivo `ConceitoA.vhd`. Tem um teste para os módulos, ==você pode testar incluindo
-    o arquivo de configuração de testes.==
+    Vocês devem implementar o "exibe hexadecimal" no arquivo `ConceitoA.vhd`.
+    Tem um teste para os módulos, ==você pode testar incluindo o arquivo de configuração de testes.==
     
-    Sugerimos que vocês reutilizem o módulo `sevenSeg.vhd`, para isso devem
-    utilizar uma recurso do VHDL chamado de `port map`.
+    Sugerimos que vocês reutilizem o módulo `sevenSeg.vhd`, 
+    para isso devem utilizar uma recurso do VHDL chamado de `port map`.
     
 
