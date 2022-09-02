@@ -4,7 +4,6 @@
 |----------------|
 | Terça - 13/09 |
 
-![](figs/LogiComb/sistema-comb.svg)
 
 !!! tip "Scrum Master"
     Você é `Scrum Master` e não sabe por onde começar? De uma olhada nessas dicas: [Vixi! Sou Scrum Master](https://insper.github.io/Z01.1/Util-vixi-sou-scrum/)
@@ -77,14 +76,10 @@ Abra o terminal na pasta `B-LogicaCombinacional` e execute o script python local
 $ ./testeLogicaCombinacional.py
 ```
 
-<script id="asciicast-eolZDZIqCgTe3UQsX5jLrkF3D" src="https://asciinema.org/a/eolZDZIqCgTe3UQsX5jLrkF3D.js" async></script>
-
-!!! note
-    No exemplo de teste verificamos que aimplementação da `nand` está errada.
 
 ## Entrega
 
-A entrega deve ser feita no ramo `master` do git.
+A entrega deve ser feita no ramo `main` do git.
 
 - [ ] Implementar todos os módulos listados
 - [ ] Todos os módulos devem passar nos testes
@@ -117,7 +112,7 @@ Deve-se implementar os seguintes circuitos combinacionais:
     - **Arquivo**   : `Nor8Way.vhd`
     - **Descrição** : NOR entre 8 bits, resulta em uma única saída
     
-- OR 8 Way  
+- OR 8 Way 
     - **Arquivo**   : `Or8Way.vhd`
     - **Descrição** : OR entre 8 bits, resulta em uma única saída
  
@@ -185,12 +180,7 @@ Deve-se implementar os seguintes circuitos combinacionais:
 !!! tip "Display 7s"
     1. Esse item é uma continuação do que foi realizado no [Lab4](/LogiComb-Lab-1/), onde vocês tiveram que exibir um valor constante no display de 7s. 
     1. Para cada segmento do display, vocês devem encontrar uma equação booleana que o represente, e então implementar em VHDL e testar na FPGA.
-<!--
-- O grupo deve apresentar um vídeo da FPGA mostrando nos display de 7 segmentos o seguinte:
-    - (C) O valor em hexadecimal da palavra binária formada pelas chaves SW(3 .. 0)
-    - (C) O valor em hexadecimal da palavra binária formada pelas chaves SW(9 .. 0)
-    - (B) O valor em decimal da palavra binária formada pelas chaves SW(9 .. 0)
--->
+
 
 ## Rubricas para avaliação do projeto
 
@@ -213,27 +203,13 @@ Para atingir os objetivos A e B, deve-se antes atingir o C.
 | **D**    | Até dois Módulos com falha/ não apresentou o vídeo da FPGA  |
 | **I**    | Mais de três módulos com falha                              |
 
-!!! tip "Conceito A e B"
-    Atualizei o repositório adicionando dois novos arquivos:
+!!! tip "Conceito A"
     
-    - `ConceitoB.vhd` e `ConceitoA.vhd`
-    
-    Vocês devem implementar os o "exibe hexadecimal" e "exibe decimal" nestes
-    arquivos. Adicionei um teste para os módulos, ==você pode testar descomentando
+    Vocês devem implementar o "exibe hexadecimal" n0
+    arquivo `ConceitoA.vhd`. Tem um teste para os módulos, ==você pode testar incluindo
     o arquivo de configuração de testes.==
     
     Sugerimos que vocês reutilizem o módulo `sevenSeg.vhd`, para isso devem
-    utilizar uma recurso do VHDL chamado de `port map`, para saber mais acesse:
-    
-    - [VHDL/port map](/Z01.1/VHDL-port-map/)    
+    utilizar uma recurso do VHDL chamado de `port map`.
     
 
-### Individual
-
-As rubricas a serem seguidas serão comuns a todos os projeto e está descrito no link:
-
-- [Rubricas Scrum e Desenvolvedor](/Z01.1/Sobre-Rubricas/)
-
-### Formulários
-- [Scrum Master](https://forms.gle/LqmbrhUFbxpEhubSA)
-- [Desenvolvedores](https://forms.gle/jTrSaBegjKZZF6za6)
