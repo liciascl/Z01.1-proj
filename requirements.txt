@@ -8,5 +8,4 @@ subprocess.run
 pymongo
 datetime
 #PyQt5
-pymongo
 pygame
