@@ -30,5 +30,5 @@ architecture rtl of Inc16 is
 
 begin
   -- Implementação vem aqui!
-  x0: Add16 port map(a,x"0001",q);
+
 end architecture;
