@@ -18,19 +18,18 @@ sys.path.insert(0, str(Path.home()) + '/Z01-Tools/scripts/')
 from config import *
 from assembler import assemblerAll, clearbin, compileAll, compileAllNotify
 
-if __name__ == "__main__":
-    pwd = os.path.dirname(os.path.abspath(__file__))
+pwd = os.path.dirname(os.path.abspath(__file__))
 
-    nasm = [pwd+"/src/", pwd+"/src/examples/"]
-    hack = pwd+"/bin/hack/"
+nasm = [pwd+"/src/", pwd+"/src/examples/"]
+hack = pwd+"/bin/hack/"
 
-    print("-------------------------")
-    print("-  Inicio      ")
-    print("-------------------------")
-    error, log = compileAll(ASSEMBLER_JAR, nasm, hack)
+print("-------------------------")
+print("-  Inicio      ")
+print("-------------------------")
+error, log = compileAll(ASSEMBLER_JAR, nasm, hack)
 
-    if error > 0:
-        print("Finalizado com erro")
-    else:
-        print("Finalizado sem erros de compilação")
-    sys.exit(compileAllNotify(error, log))
+if error > 0:
+    print("Finalizado com erro")
+else:
+    print("Finalizado sem erros de compilação")
+#sys.exit(compileAllNotify(error, log))

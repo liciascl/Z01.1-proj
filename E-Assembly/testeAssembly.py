@@ -15,6 +15,7 @@
 ######################################################################
 from os.path import join, dirname
 import sys, subprocess
+import compileALL
 from pathlib import Path
 
 sys.path.insert(0, str(Path.home()) + '/Z01-Tools/scripts/')
