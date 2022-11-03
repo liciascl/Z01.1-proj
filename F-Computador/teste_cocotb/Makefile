@@ -9,6 +9,7 @@ SIM ?= ghdl
 TOPLEVEL_LANG ?= vhdl
 
 VHDL_SOURCES += ../src/*.vhd
+VHDL_SOURCES += ../src/Dispositivos/*.vhd
 VHDL_SOURCES += ../../B-LogicaCombinacional/src/*.vhd
 VHDL_SOURCES += ../../C-UnidadeLogicaAritmetica/src/*.vhd
 VHDL_SOURCES += ../../D-LogicaSequencial/src/*.vhd
