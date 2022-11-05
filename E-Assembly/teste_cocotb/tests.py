@@ -62,13 +62,15 @@ async def tb_CPU(dut):
 
                         dut.reset.value = 1
                         await FallingEdge(dut.clock)
+                        await FallingEdge(dut.clock)
                         dut.reset.value = 0
 
                         for i in range( sTime ):
                             if dut.writeM.value == 1:
                                 RAM[dut.addressM.value] = dut.outM.value
                             else:
-                                dut.inM.value = RAM[dut.addressM.value]
+                                if int(dut.addressM.value) <= 21185:
+                                    dut.inM.value = RAM[dut.addressM.value]
                             dut.instruction.value = ROM[dut.pcout.value]
                             await FallingEdge(dut.clock) 
 

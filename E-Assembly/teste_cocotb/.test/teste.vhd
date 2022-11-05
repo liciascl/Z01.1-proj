@@ -78,6 +78,7 @@ architecture arch of CPU is
   signal c_loadPC: STD_LOGIC := '0';
   signal c_zr: std_logic := '0'; 
   signal c_ng: std_logic := '0'; 
+  signal c_inc: std_logic := '0';
 
   signal s_muxALUI_Aout: STD_LOGIC_VECTOR(15 downto 0);
   signal s_muxAM_out: STD_LOGIC_VECTOR(15 downto 0);
@@ -92,7 +93,8 @@ begin
   MuxAM: Mux16 port map(s_regAout,inM,c_muxAM,s_muxAM_out);  
   RegisterA: Register16 port map(clock,s_muxALUI_Aout,c_loadA,s_regAout);
   RegisterD: Register16 port map(clock,s_ALUout,c_loadD,s_regDout);
-  ProgCont: pc port map(clock,'1',c_loadPC,reset,s_regAout,s_pcout);
+  ProgCont: pc port map(clock,c_inc,c_loadPC,reset,s_regAout,s_pcout);
+  c_inc <= not c_loadPC;
 
   ula: ALU port map(s_regDout,s_muxAM_out,c_zx,c_nx,c_zy,c_ny,c_f,c_no,c_zr,c_ng,s_ALUout);
   outM <= s_ALUout;
