@@ -1,241 +1,165 @@
 /**
  * Curso: Elementos de Sistemas
- * Arquivo: ParserTest.java
- * Created by Luciano Soares <lpsoares@insper.edu.br>
- * Date: 16/04/2017
+ * Arquivo: CodeTest.java
+ * Created by Lucas Hix <lucash@al.insper.edu.br>
+ * Date: 21/11/2022
  */
+
 package assembler;
-import org.junit.Test;
-import org.junit.AfterClass;
-import org.junit.Rule;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class SymbolTableTest {
-
-    Parser parser = null;
-    private static StringBuilder builder = new StringBuilder();
-
-    SymbolTable table = null;
-
-    /**
-     * Create the test case
-     */
-    public SymbolTableTest() {
+    
+    private static SymbolTable table;
+    
+    @BeforeAll
+    static void setUp() {
         table = new SymbolTable();
+        
+        table.addEntry("X", 0);
     }
-
- @AfterClass
-    public static void afterClass() throws IOException {
-        String logFileName = "logJSymbolTable.txt";
-        PrintWriter logFile = new PrintWriter(logFileName, "UTF-8");
-        logFile.write(builder.toString());
-        logFile.close();
-    }
-
-    @Rule
-    public TestWatcher watchman = new TestWatcher() {
-
-        @Override
-        protected void failed(Throwable e, Description description) {
-            if (description != null) {
-                builder.append("FAIL : ");
-                builder.append(description.getMethodName());
-                builder.append("\n");
-            }
-        }
-
-        @Override
-        protected void succeeded(Description description) {
-            if (description != null) {
-                builder.append("OK  : ");
-                builder.append(description.getMethodName());
-                builder.append("\n");
-            }
-        }
-    };
-
+    
     /**
-     * Teste verificar símbolos padrões, inserido ao iniciar o sistema
+     * Teste para verificar a existência dos símbolos padrões na inicializção do sistema
      */
+    
     @Test
-    public void testSymbolTable_initialization() {
-        assertNotNull("Falha a criar o SymbolTable",table);
-
-        try {
-        	org.junit.Assume.assumeNotNull( table.contains("X") );		// ignora test
-        } catch(Exception e) {
-        	org.junit.Assume.assumeNoException(e);
-        }
-
-        try {
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R0",table.contains("R0"));
-            assertTrue("Verificando se R0 vale 0 na Tabela de Símbolos",table.getAddress("R0")==0);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R1",table.contains("R1"));
-            assertTrue("Verificando se R1 vale 1 na Tabela de Símbolos",table.getAddress("R1")==1);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R2",table.contains("R2"));
-            assertTrue("Verificando se R2 vale 2 na Tabela de Símbolos",table.getAddress("R2")==2);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R3",table.contains("R3"));
-            assertTrue("Verificando se R3 vale 3 na Tabela de Símbolos",table.getAddress("R3")==3);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R4",table.contains("R4"));
-            assertTrue("Verificando se R4 vale 4 na Tabela de Símbolos",table.getAddress("R4")==4);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R5",table.contains("R5"));
-            assertTrue("Verificando se R5 vale 5 na Tabela de Símbolos",table.getAddress("R5")==5);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R6",table.contains("R6"));
-            assertTrue("Verificando se R6 vale 6 na Tabela de Símbolos",table.getAddress("R6")==6);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R7",table.contains("R7"));
-            assertTrue("Verificando se R7 vale 7 na Tabela de Símbolos",table.getAddress("R7")==7);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R8",table.contains("R8"));
-            assertTrue("Verificando se R8 vale 8 na Tabela de Símbolos",table.getAddress("R8")==8);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R9",table.contains("R9"));
-            assertTrue("Verificando se R9 vale 9 na Tabela de Símbolos",table.getAddress("R9")==9);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R10",table.contains("R10"));
-            assertTrue("Verificando se R10 vale 10 na Tabela de Símbolos",table.getAddress("R10")==10);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R11",table.contains("R11"));
-            assertTrue("Verificando se R11 vale 11 na Tabela de Símbolos",table.getAddress("R11")==11);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R12",table.contains("R12"));
-            assertTrue("Verificando se R12 vale 12 na Tabela de Símbolos",table.getAddress("R12")==12);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R13",table.contains("R13"));
-            assertTrue("Verificando se R13 vale 13 na Tabela de Símbolos",table.getAddress("R13")==13);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R14",table.contains("R14"));
-            assertTrue("Verificando se R14 vale 14 na Tabela de Símbolos",table.getAddress("R14")==14);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM R15",table.contains("R15"));
-            assertTrue("Verificando se R15 vale 15 na Tabela de Símbolos",table.getAddress("R15")==15);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM SCREEN",table.contains("SCREEN"));
-            assertTrue("Verificando se SCREEN vale 16384 na Tabela de Símbolos",table.getAddress("SCREEN")==16384);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM SP",table.contains("SP"));
-            assertTrue("Verificando se SP vale 0 na Tabela de Símbolos",table.getAddress("SP")==0);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM LCL",table.contains("LCL"));
-            assertTrue("Verificando se LCL vale 1 na Tabela de Símbolos",table.getAddress("LCL")==1);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM ARG",table.contains("ARG"));
-            assertTrue("Verificando se ARG vale 2 na Tabela de Símbolos",table.getAddress("ARG")==2);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM THIS",table.contains("THIS"));
-            assertTrue("Verificando se THIS vale 3 na Tabela de Símbolos",table.getAddress("THIS")==3);
-
-            assertTrue("Testando se Tabela de Símbolos CONTÉM THAT",table.contains("THAT"));
-            assertTrue("Verificando se THAT vale 4 na Tabela de Símbolos",table.getAddress("THAT")==4);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    void testInitialization() {
+        assumeTrue(table.contains("X"));
+        
+        assertTrue(table.contains("R0"));
+        assertEquals(0, table.getAddress("R0"));
+        
+        assertTrue(table.contains("R1"));
+        assertEquals(1, table.getAddress("R1"));
+        
+        assertTrue(table.contains("R2"));
+        assertEquals(2, table.getAddress("R2"));
+        
+        assertTrue(table.contains("R3"));
+        assertEquals(3, table.getAddress("R3"));
+        
+        assertTrue(table.contains("R4"));
+        assertEquals(4, table.getAddress("R4"));
+        
+        assertTrue(table.contains("R5"));
+        assertEquals(5, table.getAddress("R5"));
+        
+        assertTrue(table.contains("R6"));
+        assertEquals(6, table.getAddress("R6"));
+        
+        assertTrue(table.contains("R7"));
+        assertEquals(7, table.getAddress("R7"));
+        
+        assertTrue(table.contains("R8"));
+        assertEquals(8, table.getAddress("R8"));
+        
+        assertTrue(table.contains("R9"));
+        assertEquals(9, table.getAddress("R9"));
+        
+        assertTrue(table.contains("R10"));
+        assertEquals(10, table.getAddress("R10"));
+        
+        assertTrue(table.contains("R11"));
+        assertEquals(11, table.getAddress("R11"));
+        
+        assertTrue(table.contains("R12"));
+        assertEquals(12, table.getAddress("R12"));
+        
+        assertTrue(table.contains("R13"));
+        assertEquals(13, table.getAddress("R13"));
+        
+        assertTrue(table.contains("R14"));
+        assertEquals(14, table.getAddress("R14"));
+        
+        assertTrue(table.contains("R15"));
+        assertEquals(15, table.getAddress("R15"));
+        
+        assertTrue(table.contains("SCREEN"));
+        assertEquals(16384, table.getAddress("SCREEN"));
+        
+        assertTrue(table.contains("SP"));
+        assertEquals(0, table.getAddress("SP"));
+        
+        assertTrue(table.contains("LCL"));
+        assertEquals(1, table.getAddress("LCL"));
+        
+        assertTrue(table.contains("ARG"));
+        assertEquals(2, table.getAddress("ARG"));
+        
+        assertTrue(table.contains("THIS"));
+        assertEquals(3, table.getAddress("THIS"));
+        
+        assertTrue(table.contains("THAT"));
+        assertEquals(4, table.getAddress("THAT"));
     }
-
+    
     /**
-     * Teste para adicionar e checar se símbolos já inserido
+     * Testa a adição e obtenção de um unico símbolo
      */
+    
     @Test
-    public void testSymbolTable_addEntry() {
-
-    	try {
-    		table.addEntry("X",0);
-    		org.junit.Assume.assumeNotNull( table.contains("X") );		// ignora test
-        } catch(Exception e) {
-        	org.junit.Assume.assumeNoException(e);
-        }
-
-        try {
-
-            assertFalse("Testando se Tabela de Símbolos NÃO contém A",table.contains("A"));
-            table.addEntry("A",127);
-            assertTrue("Testando se Tabela de Símbolos CONTÉM A",table.contains("A"));
-            assertTrue("Verificando se A vale 127 na Tabela de Símbolos",table.getAddress("A")==127);
-
-            assertFalse("Testando se Tabela de Símbolos NÃO contém i",table.contains("i"));
-            table.addEntry("i",16);
-            assertTrue("Testando se Tabela de Símbolos CONTÉM A",table.contains("i"));
-            assertTrue("Verificando se i vale 16 na Tabela de Símbolos",table.getAddress("i")==16);
-
-            assertFalse("Testando se Tabela de Símbolos NÃO contém WxYz",table.contains("WxYz"));
-            table.addEntry("WxYz",16383);
-            assertTrue("Testando se Tabela de Símbolos CONTÉM WxYz",table.contains("WxYz"));
-            assertTrue("Verificando se WxYz vale 16 na Tabela de Símbolos",table.getAddress("WxYz")==16383);
-
-            assertFalse("Testando se Tabela de Símbolos NÃO contém _123",table.contains("_123"));
-            table.addEntry("_123",123);
-            assertTrue("Testando se Tabela de Símbolos CONTÉM _123",table.contains("_123"));
-            assertTrue("Verificando se _123 vale 16 na Tabela de Símbolos",table.getAddress("_123")==123);
-
-            assertFalse("Testando se Tabela de Símbolos NÃO contém LOOP",table.contains("LOOP"));
-            table.addEntry("LOOP",0);
-            assertTrue("Testando se Tabela de Símbolos CONTÉM LOOP",table.contains("LOOP"));
-            assertTrue("Verificando se LOOP vale 16 na Tabela de Símbolos",table.getAddress("LOOP")==0);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
+    void testAddAndReadSingleEntry() {
+        assumeTrue(table.contains("X"));
+        
+        assertFalse(table.contains("A"));
+        table.addEntry("A", 127);
+        assertTrue(table.contains("A"));
+        assertEquals(127, table.getAddress("A"));
+        
+        assertFalse(table.contains("i"));
+        table.addEntry("i", 16);
+        assertTrue(table.contains("i"));
+        assertEquals(16, table.getAddress("i"));
+        
+        assertFalse(table.contains("WxYz"));
+        table.addEntry("WxYz", 16383);
+        assertTrue(table.contains("WxYz"));
+        assertEquals(16383, table.getAddress("WxYz"));
+        
+        assertFalse(table.contains("_123"));
+        table.addEntry("_123", 123);
+        assertTrue(table.contains("_123"));
+        assertEquals(123, table.getAddress("_123"));
+        
+        assertFalse(table.contains("LOOP"));
+        table.addEntry("LOOP", 0);
+        assertTrue(table.contains("LOOP"));
+        assertEquals(0, table.getAddress("LOOP"));
     }
-
+    
     /**
-     * Teste para adicionar e checar vários símbolos inseridos
+     * Testa a adição e obtenção de um multiplos símbolos com valores repetidos
      */
+    
     @Test
-    public void testSymbolTable_repetitive() {
-
-    	try {
-    		table.addEntry("X",0);
-    		org.junit.Assume.assumeNotNull( table.contains("X") );		// ignora test
-        } catch(Exception e) {
-        	org.junit.Assume.assumeNoException(e);
+    void testAddAndReadMultipleEntries() {
+        assumeTrue(table.contains("X"));
+        
+        for (int i = 0; i < 16384; i++) {
+            table.addEntry("TESTE" + i, 0);
         }
-
-        try {
-
-            for (int i = 0; i < 16384; i++) {
-                table.addEntry("TESTE"+i,0);
-            }
-
-            for (int i = 0; i < 16384; i++) {
-                assertTrue("Testando intensamente Tabela de Símbolos",table.contains("TESTE"+i));
-            }
-
-            for (int i = 0; i < 16384; i++) {
-                assertTrue("Verificando intensamente existência de Símbolos",table.getAddress("TESTE"+i)==0);
-            }
-
-            for (int i = 0; i < 16384; i++) {
-                table.addEntry("END"+i,16383);
-            }
-
-            for (int i = 0; i < 16384; i++) {
-                assertTrue("Testando intensamente Tabela de Símbolos",table.contains("END"+i));
-            }
-
-            for (int i = 0; i < 16384; i++) {
-                assertTrue("Verificando intensamente existência de Símbolos",table.getAddress("END"+i)==16383);
-            }
-
-        } catch(Exception e) {
-            e.printStackTrace();
+        for (int i = 0; i < 16384; i++) {
+            assertTrue(table.contains("TESTE" + i));
         }
-
+        for (int i = 0; i < 16384; i++) {
+            assertEquals(0, table.getAddress("TESTE" + i));
+        }
+        for (int i = 0; i < 16384; i++) {
+            table.addEntry("END" + i, 16383);
+        }
+        for (int i = 0; i < 16384; i++) {
+            assertTrue(table.contains("END" + i));
+        }
+        for (int i = 0; i < 16384; i++) {
+            assertEquals(16383, table.getAddress("END" + i));
+        }
     }
-
-
 }

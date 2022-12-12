@@ -1,64 +1,84 @@
+/**
+ * Curso: Elementos de Sistemas
+ * Arquivo: CodeTest.java
+ * Created by Lucas Hix <lucash@al.insper.edu.br>
+ * Date: 21/11/2022
+ */
+
 package assembler;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class AssembleTest {
-
-    Assemble assembler = null;
-    private String inFile  = "src/test/resources/isEven.nasm";
-    private String outFile = "src/test/resources/isEven.hack";
-
-    public AssembleTest() {
-        try {
-            // Cria objeto assembler auxiliar
-            assembler = new Assemble(inFile, outFile, false );
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    
+    private static final String inFile = "src/test/resources/isEven.nasm";
+    private static final String outFile = "src/test/resources/isEven.hack";
+    
+    private static Assemble assembler;
+    
+    @BeforeAll
+    static void setUp() throws IOException {
+        assembler = new Assemble(inFile, outFile, true);
     }
-
+    
+    /**
+     * Teste da indetificação e armazenamento das labels, CommandType#L_COMMAND
+     * 
+     * @throws IOException If any I/O error occurs
+     */
+    
     @Test
-    public void fillSymbolTable() throws IOException {
+    void testFillSymbolTable() throws IOException {
         // Cria tabela de símbolos
         SymbolTable table = assembler.fillSymbolTable();
-        assertTrue("R1",table.contains("R1")==true);
-        assertTrue("$impar",table.contains("impar")==true);
-        assertTrue("$impar",table.getAddress("impar")==12);
-        assertTrue("$par",table.contains("par")==true);
-        assertTrue("$par",table.getAddress("par")==2);
-        assertTrue("$end",table.contains("end")==true);
-        assertTrue("$end",table.getAddress("end")==14);
+        
+        assertTrue(table.contains("impar"));
+        assertEquals(12, (int) table.getAddress("impar")); // $impar
+
+        assertTrue(table.contains("par"));
+        assertEquals(2, (int) table.getAddress("par")); // $par
+        
+        assertTrue(table.contains("end"));
+        assertEquals(14, (int) table.getAddress("end")); // $end
     }
-
+    
+    /**
+     * Teste da geração do código de maquina
+     * 
+     * @throws IOException If any I/O error occurs
+     */
+    
     @Test
-    public void generateMachineCode() throws IOException {
-       // SymbolTable table = assembler.fillSymbolTable();
-        SymbolTable table = assembler.fillSymbolTable();
-
+    void testGenerateMachineCode() throws IOException {
+        assembler.fillSymbolTable();
         assembler.generateMachineCode();
         assembler.close();
+        
         BufferedReader fileReader = new BufferedReader(new FileReader(outFile));
-        assertEquals(fileReader.readLine(),"000000000000000101"); // leaw $5, %A
-        assertEquals(fileReader.readLine(),"100011100000010000"); // movw (%A), %D
-        assertEquals(fileReader.readLine(),"000000000000000001"); // leaw $1, %A
-        assertEquals(fileReader.readLine(),"100000000000010000"); // andw %A, %D, %D
-        assertEquals(fileReader.readLine(),"000000000000001100"); // leaw $impart, %A
-        assertEquals(fileReader.readLine(),"100000011000000001"); // jg
-        fileReader.readLine(); // nop "100000000000000000"
-        assertEquals(fileReader.readLine(),"000000000000000000"); // leaw $0, %A
-        assertEquals(fileReader.readLine(),"100001111110100000"); // movw $1, ($A)
-        assertEquals(fileReader.readLine(),"000000000000001110"); // leaw $impart, %A
-        assertEquals(fileReader.readLine(),"100000011000000111"); // jg
-        fileReader.readLine(); // nop "100000000000000000"
-        assertEquals(fileReader.readLine(),"000000000000000000"); // leaw $0, %A
-        assertEquals(fileReader.readLine(),"100001010100100000"); // movw $1, ($A)
+        
+        assertEquals("000000000000000101", fileReader.readLine()); // leaw $5, %A
+        assertEquals("100011100000010000", fileReader.readLine()); // movw (%A), %D
+        assertEquals("000000000000000001", fileReader.readLine()); // leaw $1, %A
+        assertEquals("100000000000010000", fileReader.readLine()); // andw %A, %D, %D
+        assertEquals("000000000000001100", fileReader.readLine()); // leaw $impart, %A
+        assertEquals("100000011000000001", fileReader.readLine()); // jg
+        assertEquals("100000000000000000", fileReader.readLine()); // nop
+        assertEquals("000000000000000000", fileReader.readLine()); // leaw $0, %A
+        assertEquals("100001111110100000", fileReader.readLine()); // movw $1, ($A)
+        assertEquals("000000000000001110", fileReader.readLine()); // leaw $impart, %A
+        assertEquals("100000011000000111", fileReader.readLine()); // jg
+        assertEquals("100000000000000000", fileReader.readLine()); // nop
+        assertEquals("000000000000000000", fileReader.readLine()); // leaw $0, %A
+        assertEquals("100001010100100000", fileReader.readLine()); // movw $1, ($A)
+        
+        fileReader.close();
     }
 }
