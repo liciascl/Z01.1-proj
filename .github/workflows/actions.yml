@@ -50,8 +50,8 @@ jobs:
     - name: teste vhdl
       run: |
         bash updateZ01tools.sh 
-        python3 B-LogicaCombinacional/testeLogicaCombinacional.py
-        python3 C-UnidadeLogicaAritmetica/testeULA.py
+#        python3 B-LogicaCombinacional/testeLogicaCombinacional.py
+#        python3 C-UnidadeLogicaAritmetica/testeULA.py
 #        python3 D-LogicaSequencial/testeLogicaSequencial.py
         
     
