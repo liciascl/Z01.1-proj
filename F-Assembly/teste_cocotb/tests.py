@@ -25,14 +25,14 @@ async def tb_CPU(dut):
                 par = line.rstrip().split()
                 name = par[0][:-5]
                 sTime = int(par[2])
-                mif = "../../E-Assembly/bin/hack/"+name+".mif"
+                mif = "../bin/hack/"+name+".mif"
 
                 # verifica se arquivo existe
                 if os.path.isfile(mif):
                     # simulate
                     for test in range(0, int(par[1])):
-                        ramIn = "../../E-Assembly/tests/" + name + "/" + name +"{}".format(test)+ "_in.mif"
-                        ramTest = "../../E-Assembly/tests/" + name + "/" + name +"{}".format(test)+ "_tst.mif"
+                        ramIn = "../tests/" + name + "/" + name +"{}".format(test)+ "_in.mif"
+                        ramTest = "../tests/" + name + "/" + name +"{}".format(test)+ "_tst.mif"
 
                         RAM = [0] * (16*1024+4800+2)
                         ROM = [0] * 32*1024

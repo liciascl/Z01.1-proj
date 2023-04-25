@@ -47,7 +47,7 @@ if __name__ == "__main__":
     tstLogiComb.addTst(tstLogiComb.work)   
 
     print("\n\n===================================================")
-    print("E - Assembly")
+    print("F - Assembly")
     print("===================================================")
     tstLogiComb.show_results(tstLogiComb.work)
     print("===================================================\n")
