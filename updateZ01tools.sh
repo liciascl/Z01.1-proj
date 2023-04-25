@@ -4,10 +4,12 @@ echo "----------------------------------------"
 echo "         ELEMENTOS DE SISTEMAS          "
 echo "----------------------------------------"
 
-#echo "-------------------------------------------------------"
-#echo "- Módulos python"
-#echo "-------------------------------------------------------"
-#pip3 install -r requirements.txt --user
+echo "-------------------------------------------------------"
+echo "- Módulos python"
+echo "-------------------------------------------------------"
+python3 -m venv ~/nasm
+source ~/nasm/bin/activate
+pip3 install -r requirements.txt
 
 echo "-------------------------------------------------------"
 echo "- Z01 tools"
