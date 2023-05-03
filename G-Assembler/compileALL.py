@@ -21,7 +21,7 @@ from assembler import assemblerAll, clearbin, compileAll, compileAllNotify
 
 pwd = os.path.dirname(os.path.abspath(__file__))
 
-nasm = [pwd+"/../E-Assembly/src/", pwd+"/../E-Assembly/src/examples/"]
+nasm = [pwd+"/../F-Assembly/src/", pwd+"/../F-Assembly/src/examples/"]
 hack = pwd+"/bin/hack/"
 
 print("-------------------------")

@@ -31,8 +31,8 @@ async def tb_CPU(dut):
                 if os.path.isfile(mif):
                     # simulate
                     for test in range(0, int(par[1])):
-                        ramIn = "../../E-Assembly/tests/" + name + "/" + name +"{}".format(test)+ "_in.mif"
-                        ramTest = "../../E-Assembly/tests/" + name + "/" + name +"{}".format(test)+ "_tst.mif"
+                        ramIn = "../../F-Assembly/tests/" + name + "/" + name +"{}".format(test)+ "_in.mif"
+                        ramTest = "../../F-Assembly/tests/" + name + "/" + name +"{}".format(test)+ "_tst.mif"
 
                         RAM = [0] * (16*1024+4800+2)
                         ROM = [0] * 32*1024
