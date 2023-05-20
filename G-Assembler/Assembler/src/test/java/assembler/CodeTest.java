@@ -83,8 +83,8 @@ public class CodeTest {
 	
 	@Test
 	void testComputation() {
-		assumeFalse(Code.dest(new String[] { "nop" }) == null); // ignora test
-		assumeFalse(Code.dest(new String[] { "nop" }).isEmpty()); // ignora test
+		assumeFalse(Code.comp(new String[] { "nop" }) == null); // ignora test
+		assumeFalse(Code.comp(new String[] { "nop" }).isEmpty()); // ignora test
 		
 		assertEquals("000110000", Code.comp(new String[] { "movw", "%A", "%D" }));
 		assertEquals("000001100", Code.comp(new String[] { "movw", "%D", "%A" }));
@@ -127,8 +127,8 @@ public class CodeTest {
 	
 	@Test
 	void testJump() {
-		assumeFalse(Code.dest(new String[] { "nop" }) == null); // ignora test
-		assumeFalse(Code.dest(new String[] { "nop" }).isEmpty()); // ignora test
+		assumeFalse(Code.jump(new String[] { "nop" }) == null); // ignora test
+		assumeFalse(Code.jump(new String[] { "nop" }).isEmpty()); // ignora test
 		
 		assertEquals("000", Code.jump(new String[] { "movw", "%A", "%D" }));
 		assertEquals("000", Code.jump(new String[] { "addw", "%A", "%D", "%D" }));
