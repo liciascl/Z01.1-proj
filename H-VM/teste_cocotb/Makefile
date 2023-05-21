@@ -11,7 +11,7 @@ TOPLEVEL_LANG ?= vhdl
 VHDL_SOURCES += ../../B-LogicaCombinacional/src/*.vhd
 VHDL_SOURCES += ../../C-UnidadeLogicaAritmetica/src/*.vhd
 VHDL_SOURCES += ../../D-LogicaSequencial/src/*.vhd
-VHDL_SOURCES += ../../E-Assembly/teste_cocotb/.test/*.vhd
+VHDL_SOURCES += ../../E-Computador/src/*.vhd
 # use VHDL_SOURCES for VHDL files
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
