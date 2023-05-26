@@ -20,7 +20,7 @@ public class CodeTest {
 	 */
 	
 	@Test
-	void test_toBinary() {
+	public void test_toBinary() {
 		assumeFalse(Code.toBinary("0") == null); // ignora test
 		assumeFalse(Code.toBinary("0").isEmpty()); // ignora test
 		
@@ -42,7 +42,7 @@ public class CodeTest {
 	 */
 	
 	@Test
-	void testDestine() {
+	public void testDestine() {
 		assumeFalse(Code.dest(new String[] { "nop" }) == null); // ignora test
 		assumeFalse(Code.dest(new String[] { "nop" }).isEmpty()); // ignora test
 		
@@ -82,9 +82,9 @@ public class CodeTest {
 	 */
 	
 	@Test
-	void testComputation() {
-		assumeFalse(Code.comp(new String[] { "nop" }) == null); // ignora test
-		assumeFalse(Code.comp(new String[] { "nop" }).isEmpty()); // ignora test
+	public void testComputation() {
+		assumeFalse(Code.dest(new String[] { "nop" }) == null); // ignora test
+		assumeFalse(Code.dest(new String[] { "nop" }).isEmpty()); // ignora test
 		
 		assertEquals("000110000", Code.comp(new String[] { "movw", "%A", "%D" }));
 		assertEquals("000001100", Code.comp(new String[] { "movw", "%D", "%A" }));
@@ -126,9 +126,9 @@ public class CodeTest {
 	 */
 	
 	@Test
-	void testJump() {
-		assumeFalse(Code.jump(new String[] { "nop" }) == null); // ignora test
-		assumeFalse(Code.jump(new String[] { "nop" }).isEmpty()); // ignora test
+	public void testJump() {
+		assumeFalse(Code.dest(new String[] { "nop" }) == null); // ignora test
+		assumeFalse(Code.dest(new String[] { "nop" }).isEmpty()); // ignora test
 		
 		assertEquals("000", Code.jump(new String[] { "movw", "%A", "%D" }));
 		assertEquals("000", Code.jump(new String[] { "addw", "%A", "%D", "%D" }));

@@ -20,7 +20,7 @@ public class SymbolTableTest {
     private static SymbolTable table;
     
     @BeforeAll
-    static void setUp() {
+    public static void setUp() {
         table = new SymbolTable();
         
         table.addEntry("X", 0);
@@ -31,7 +31,7 @@ public class SymbolTableTest {
      */
     
     @Test
-    void testInitialization() {
+    public void testInitialization() {
         assumeTrue(table.contains("X"));
         
         assertTrue(table.contains("R0"));
@@ -106,7 +106,7 @@ public class SymbolTableTest {
      */
     
     @Test
-    void testAddAndReadSingleEntry() {
+    public void testAddAndReadSingleEntry() {
         assumeTrue(table.contains("X"));
         
         assertFalse(table.contains("A"));
@@ -140,7 +140,7 @@ public class SymbolTableTest {
      */
     
     @Test
-    void testAddAndReadMultipleEntries() {
+    public void testAddAndReadMultipleEntries() {
         assumeTrue(table.contains("X"));
         
         for (int i = 0; i < 16384; i++) {

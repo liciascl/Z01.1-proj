@@ -24,7 +24,7 @@ public class ParserTest {
     private static Parser parser;
     
     @BeforeAll
-    static void setUp() throws IOException {
+    public static void setUp() throws IOException {
         parser = new Parser("src/test/resources/testEmpty.nasm");
     }
     
@@ -33,7 +33,7 @@ public class ParserTest {
      */
     
     @Test
-    void testCommandType() {
+    public void testCommandType() {
         assumeFalse(parser.commandType("nop") == null);
         
         assertEquals(Parser.CommandType.A_COMMAND, parser.commandType("leaw $0,%A"));
@@ -52,7 +52,7 @@ public class ParserTest {
      */
     
     @Test
-    void testLabel() {
+    public void testLabel() {
         assumeFalse(parser.label("TESTE:") == null);
         assumeFalse(parser.label("TESTE:").isEmpty());
         
@@ -66,7 +66,7 @@ public class ParserTest {
      */
     
     @Test
-    void testSymbol() {
+    public void testSymbol() {
         assumeFalse(parser.symbol("leaw $0,%A") == null);
         assumeFalse(parser.symbol("leaw $0,%A").isEmpty());
         
@@ -82,7 +82,7 @@ public class ParserTest {
      */
     
     @Test
-    void testInstruction() {
+    public void testInstruction() {
         assumeFalse(parser.instruction("nop:") == null);
         
         assertArrayEquals(new String[] { "leaw", "$0", "%A" }, parser.instruction("leaw $0,%A"));
@@ -115,7 +115,7 @@ public class ParserTest {
      */
 
     @Test
-    void testReadLeaw() throws IOException {
+    public void testReadLeaw() throws IOException {
         Parser parser = new Parser("src/test/resources/testLeaw.nasm");
         
         assumeTrue(parser.advance());
@@ -142,7 +142,7 @@ public class ParserTest {
      */
 
     @Test
-    void testReadJump() throws IOException {
+    public void testReadJump() throws IOException {
         Parser parser = new Parser("src/test/resources/testJump.nasm");
         
         assumeTrue(parser.advance());
@@ -179,7 +179,7 @@ public class ParserTest {
      */
 
     @Test
-    void testReadComputation() throws IOException {
+    public void testReadComputation() throws IOException {
         Parser parser = new Parser("src/test/resources/testComp.nasm");
         
         assumeTrue(parser.advance());
