@@ -1,17 +1,28 @@
-[![](icon-elementos.png)](https://insper.github.io/Z01.1/)
 
-> Desenvolvendo um computador do ZERO!
+```
+export SIM=ghdl
+pip3 install -r requirements.txt
+cd b_logComb
+SIM=ghdl pytest -s
+```
 
-Material disponível no [site](https://insper.github.io/Z01.1/)
+Agora vai abrir uma pagina para voce autenticar via github e vai gerar um 
+token que voce deve colar no terminal
 
-## Clonando
+## Rodando apenas um teste
 
-``` bash
-$ # Clone o repositório
-$ git clone https://github.com/insper-classroom/<repo>
-$ cd <repo>
-$ # instale e/ou atualize o Z01.1
-$ ./updateZ01tools.sh
-$ # instale as dependencias python
-$ pip install -r requirements.txt --user
+Para executar apenas um teste voce pode passar o nome deles usando `-k` 
+
+```
+SIM=ghdl pytest -k and16
+```
+
+Apenas o `and16` sera testado.
+
+## Dica
+
+Colcoar no `.bashrc`: 
+
+```bash
+export SIM=ghdl
 ```
