@@ -39,7 +39,7 @@ def test_nor8way():
 def test_barrelshifter16():
     run(vhdl_sources=[source("barrelshifter16.vhd")], toplevel="barrelshifter16", module="logComb_cocotb" , testcase='tb_barrelshifter16', toplevel_lang="vhdl")  
     
-@pytest.mark.telemetry_files(source('dMux2way.vhd'))
+@pytest.mark.telemetry_files(source('dmux2way.vhd'))
 def test_dmux2way():
     run(vhdl_sources=[source("dmux2way.vhd")], toplevel="dmux2way", module="logComb_cocotb" , testcase='tb_dmux2way', toplevel_lang="vhdl")  
   

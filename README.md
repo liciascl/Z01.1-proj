@@ -21,8 +21,8 @@ Apenas o `and16` sera testado.
 
 ## Dica
 
-Colcoar no `.bashrc`: 
+Para colcocar no `.bashrc`, execute: 
 
 ```bash
-export SIM=ghdl
+echo 'export SIM=ghdl' >> $HOME/elementos.sh
 ```
