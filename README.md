@@ -21,8 +21,8 @@ Apenas o `and16` sera testado.
 
 ## Dica
 
-Colcoar no `.bashrc`: 
+Digite no terminal uma unica vez para habilitar o uso do simulador ghdl
 
 ```bash
-export SIM=ghdl
+echo 'export SIM=ghdl' >> $HOME/elementos.sh
 ```
